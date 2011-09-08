@@ -1,0 +1,32 @@
+﻿@using JuniorMVC3Test.Models
+@model ProductOutputModel
+
+@{
+    ViewBag.Title = "ViewPage1";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>@Model.Name - Id: @Model.Id </h2>
+
+@Html.ActionLink("Detta är en action", "ListAll")
+
+
+
+@using(Html.BeginForm("Update", "Product", FormMethod.Post))
+{
+    @Model.BildUrl
+    @Html.TextBox("Name")
+    <input type="submit" value="Klicka på mig" />
+}
+
+<h3>Relaterade produkter:</h3>
+
+@if (Model.ShowRelatedProductList)
+{
+    <ul>
+        @foreach (var relateradProdukt in Model.RelateradeProdukter)
+        {
+            <li>@relateradProdukt</li>
+        }
+    </ul>
+}
